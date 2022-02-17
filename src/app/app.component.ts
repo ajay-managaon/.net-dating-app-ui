@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   }
 
   getUsers() {
-    this.http.get('http://localhost:5272/Users').subscribe({
+    this.http.get('https://datingappwebsite.azurewebsites.net/api/users').subscribe({
       next: (response) => {
         this.users = response;
       },
