@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { User } from '../models/user';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../services/account.service';
 
 @Component({
@@ -11,7 +11,10 @@ import { AccountService } from '../services/account.service';
 export class NavComponent implements OnInit {
 
   model : any = {};
-  constructor(public accountservice : AccountService) { }
+  constructor(
+    public accountservice : AccountService, 
+    private router : Router,
+    private toastr : ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -19,15 +22,17 @@ export class NavComponent implements OnInit {
   login(){
     this.accountservice.login(this.model).subscribe({
       next : (response) => {
+        this.router.navigateByUrl("/members");
         console.log(response);
       },
       error: (error: any) =>{
-        console.log(error);
+        this.toastr.error(error.error);
       }
     })
   }
 
   logout(){
     this.accountservice.logout();
+    this.router.navigateByUrl("/");
   }
 }
