@@ -25,7 +25,11 @@ export class RegisterComponent implements OnInit {
         console.log(response);
       },
       error : error =>{
-        this.toastr.error(error.error);
+        if(error[0]){
+          this.toastr.error(error[0]);
+        }else if(error[1]){
+          this.toastr.error(error[1]);
+        }
       }
     });
   }
