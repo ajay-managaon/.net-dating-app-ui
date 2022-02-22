@@ -16,14 +16,14 @@ const routes: Routes = [
     runGuardsAndResolvers : 'always',
     canActivate : [AuthGuard],
     children : [
-      {path : 'members', component : MemberListComponent, canActivate: [AuthGuard]},
-      {path : 'member-details/:id', component: MemberDetailsComponent},
+      {path : 'members', component : MemberListComponent},
+      {path : 'member-details/:username', component: MemberDetailsComponent},
       {path : 'lists', component : ListsComponent},
-      {path : 'messages', component : MessagesComponent},
-      {path : 'not-found', component : NotFoundComponent},
-      {path : 'server-error', component : ServerErrorComponent}
+      {path : 'messages', component : MessagesComponent}
     ]
   },
+  {path : 'not-found', component : NotFoundComponent},
+  {path : 'server-error', component : ServerErrorComponent},
   {path : '**', component : NotFoundComponent, pathMatch : 'full'}
 ];
 

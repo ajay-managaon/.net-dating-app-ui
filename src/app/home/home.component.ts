@@ -14,22 +14,10 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getUsers();
   }
 
   registerToggle(){
     this.registerMode = !this.registerMode;
-  }
-
-  getUsers() {
-    this.http.get('https://datingappwebsite.azurewebsites.net/api/users').subscribe({
-      next: (response) => {
-        this.users = response;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
   }
 
   cancelRegister(event : boolean){
