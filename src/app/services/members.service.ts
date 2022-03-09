@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Member } from '../models/member';
 
@@ -24,5 +23,13 @@ export class MembersService {
 
   updateMember(member : Member){
     return this.http.put(this.baseUrl + "user/updateuser", member);
+  }
+
+  setMainPhoto(photoId : number){
+    return this.http.put(this.baseUrl + "user/set-main-photo/" + photoId , {});
+  }
+
+  deletePhoto(photoId : number){
+    return this.http.delete(this.baseUrl + "delete-photo/" + photoId);
   }
 }
