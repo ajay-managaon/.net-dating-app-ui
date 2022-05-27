@@ -17,10 +17,10 @@ import { AccountService } from '../services/account.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  model: any = {};
   @Output() cancelRegister = new EventEmitter();
   registerForm!: FormGroup;
   maxDate : Date
+  validationErrors: string[] = [];
 
   constructor(
     private accountService: AccountService,
@@ -72,14 +72,14 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log(this.registerForm.value)
-    if (this.registerForm.valid) {
-      this.accountService.register(this.model).subscribe({
+      this.accountService.register(this.registerForm.value).subscribe({
         next: () => {
           this.router.navigateByUrl('/members');
-        },
+        }, 
+        error: error =>{
+          this.validationErrors = error
+        }
       });
-    }
   }
 
   matchPassword(password: string): ValidatorFn {

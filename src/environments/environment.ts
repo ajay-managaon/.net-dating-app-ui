@@ -1,5 +1,5 @@
 
 export const environment = {
   production: false,
-  apiUrl : "https://datingappwebsite.azurewebsites.net/api/"
+  apiUrl : "http://localhost:5272/api/"
 };
