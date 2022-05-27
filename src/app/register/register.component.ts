@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import {
   AbstractControl,
+  FormBuilder,
   FormControl,
   FormGroup,
   ValidatorFn,
@@ -19,32 +20,51 @@ export class RegisterComponent implements OnInit {
   model: any = {};
   @Output() cancelRegister = new EventEmitter();
   registerForm!: FormGroup;
+  maxDate : Date
 
   constructor(
     private accountService: AccountService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private fb : FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.inititlizeForm();
+    this.maxDate = new Date();
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
   }
 
   inititlizeForm() {
-    this.registerForm = new FormGroup({
-      username: new FormControl('', [
+    this.registerForm = this.fb.group({
+      gender: ['male'],
+      username: ['', [
         Validators.required,
         Validators.minLength(4),
-      ]),
-      password: new FormControl('', [
+        Validators.maxLength(20),
+      ]],
+      knownAs: ['', [
+        Validators.required,
+        Validators.minLength(4),
+      ]],
+      dateOfBirth: ['', [
+        Validators.required
+      ]],
+      city: ['', [
+        Validators.required,
+      ]],
+      country: ['', [
+        Validators.required,
+      ]],
+      password: ['', [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(10),
-      ]),
-      confirmpassword: new FormControl('', [
+      ]],
+      confirmpassword: ['', [
         Validators.required,
         this.matchPassword('password'),
-      ]),
+      ]],
     });
     this.registerForm.controls['password'].valueChanges.subscribe(() => {
       this.registerForm.controls['confirmpassword'].updateValueAndValidity();
@@ -52,7 +72,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log(this.registerForm)
+    console.log(this.registerForm.value)
     if (this.registerForm.valid) {
       this.accountService.register(this.model).subscribe({
         next: () => {

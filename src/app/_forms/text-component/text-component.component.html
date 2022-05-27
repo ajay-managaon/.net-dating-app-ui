@@ -5,12 +5,12 @@
         class="form-control" 
         [formControl]="ngControl.control"
         placeholder={{label}}>
-    <div *ngIf="ngControl.control.hasError('required')" class="invalid-feedback">Please enter a {{label}}</div>
+    <div *ngIf="ngControl.control.hasError('required')" class="invalid-feedback">Please enter the {{label}}</div>
     <div *ngIf="ngControl.control.hasError('minlength')" class="invalid-feedback">
-        {{label}} must be at least {{ngControl.control.hasError('minlength')['requiredLength']}}
+        {{label}} must be at least {{ngControl.control.getError('minlength')['requiredLength']}} characters.
     </div>
     <div *ngIf="ngControl.control.hasError('maxlength')" class="invalid-feedback">
-        {{label}} must be at most {{ngControl.control.hasError('maxlength')['requiredLength']}}
+        {{label}} must be at most {{ngControl.control.getError('maxlength')['requiredLength']}} characters.
     </div>
     <div *ngIf="ngControl.control.hasError('isMatching') && ngControl.control.value.length > 0" class="invalid-feedback">
         Passwords do not match

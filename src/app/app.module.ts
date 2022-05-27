@@ -25,6 +25,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { TextComponentComponent } from './_forms/text-component/text-component.component';
+import { DateInputComponent } from './_date/date-input/date-input.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { TextComponentComponent } from './_forms/text-component/text-component.c
     MemberCardComponent,
     MemberEditComponent,
     PhotoEditorComponent,
-    TextComponentComponent
+    TextComponentComponent,
+    DateInputComponent
   ],
   imports: [
     BrowserModule,

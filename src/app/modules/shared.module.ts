@@ -5,6 +5,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 
 
 
@@ -18,14 +19,16 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     }),
     TabsModule.forRoot(),
     NgxGalleryModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    BsDatepickerModule.forRoot()
   ],
   exports:[
     BsDropdownModule,
     ToastrModule,
     TabsModule,
     NgxGalleryModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    BsDatepickerModule
   ]
 })
 export class SharedModule { }
